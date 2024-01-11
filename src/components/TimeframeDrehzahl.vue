@@ -42,7 +42,7 @@ export default {
       const apiEndpoint = 'https://cartrackerapi.onrender.com/api/v1/fahrzeuge/67c012ef-39f7-48c1-8d7a-092fcad45c08/messwerte';
       const queryParams = `von=${encodeURIComponent(this.datetimeStart)}&bis=${encodeURIComponent(this.datetimeEnd)}&type=rpm`;
       const url = `${apiEndpoint}?${queryParams}`;
-
+      console.log(url); // Log the constructed URL
       try {
         const response = await fetch(url);
 
@@ -84,7 +84,7 @@ export default {
         }
       }
     });
-    console.log(url); // Log the constructed URL
+    
     // Initial data fetch and chart render
     this.fetchData();
   },
