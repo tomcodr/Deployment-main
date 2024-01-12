@@ -54,10 +54,6 @@ export default {
     // Beim Laden der Komponente, rufe die Funktion zum Abrufen des ABS-Status auf
     this.fetchAbsStatus();
 
-    // Setze ein Intervall, um die Funktion alle 2 Sekunden aufzurufen
-    setInterval(() => {
-      this.fetchAbsStatus();
-    }, 2000);
   },
 };
 </script>

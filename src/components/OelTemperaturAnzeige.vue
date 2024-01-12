@@ -1,5 +1,5 @@
 <template>
-  <b class="oel-value">{{ oilTemperatureValue !== null ? oilTemperatureValue : 'N/A' }}</b>
+  <b class="oel-value">{{ oilTemperatureValue !== null ? oilTemperatureValue : '0°' }}</b>
 </template>
 
 <script>
@@ -42,11 +42,7 @@ export default {
     },
   },
   mounted() {
-    // Starte das Aktualisierungsintervall
-    this.updateInterval = setInterval(() => {
-      this.fetchOilTemperatureValue();
-    }, 2000);
-
+    
     // Führe fetchOilTemperatureValue einmal bei der Initialisierung aus
     this.fetchOilTemperatureValue();
   },

@@ -55,9 +55,7 @@ export default {
     this.fetchBrakeLightStatus();
 
     // Setze ein Intervall, um die Funktion alle 2 Sekunden aufzurufen
-    setInterval(() => {
-      this.fetchBrakeLightStatus();
-    }, 2000);
+    
   },
 };
 </script>

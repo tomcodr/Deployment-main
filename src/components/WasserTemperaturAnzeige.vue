@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b class="water-temperature">{{ waterTemperature !== null ? waterTemperature : 'N/A' }}</b>
+    <b class="water-temperature">{{ waterTemperature !== null ? waterTemperature : '0°' }}</b>
   </div>
 </template>
 
@@ -44,10 +44,6 @@ export default {
     },
   },
   mounted() {
-    // Starte das Aktualisierungsintervall
-    this.updateInterval = setInterval(() => {
-      this.fetchWaterTemperature();
-    }, 2000);
 
     // Führe fetchWaterTemperature einmal bei der Initialisierung aus
     this.fetchWaterTemperature();

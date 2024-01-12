@@ -1,5 +1,5 @@
 <template>
-  <b class="airflowspeed-value">{{ airflowspeedValue !== null ? airflowspeedValue : 'N/A' }}</b>
+  <b class="airflowspeed-value">{{ airflowspeedValue !== null ? airflowspeedValue : '0' }}</b>
 </template>
 
 <script>

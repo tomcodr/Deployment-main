@@ -35,11 +35,7 @@ export default {
     },
   },
   mounted() {
-    // Starte das Aktualisierungsintervall
-    this.updateInterval = setInterval(() => {
-      this.fetchSpoilerStatus();
-    }, 2000);
-
+  
     // Führe fetchSpoilerStatus einmal bei der Initialisierung aus
     this.fetchSpoilerStatus();
   },

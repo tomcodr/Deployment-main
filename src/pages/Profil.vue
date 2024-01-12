@@ -1,5 +1,6 @@
 <template>
   <Navigation/>
+  <div class="toggle"><ToggleSwitch @click="toggleBackgroundMode"/></div>
   <div>
     <body>
       <div class="container">
@@ -25,6 +26,7 @@ import { ref, onMounted } from 'vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../main';
+import ToggleSwitch from "../components/ToggleSwitch.vue";
 
 const auth = getAuth();
 const user = ref({
@@ -78,7 +80,6 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10000;
     width: 100%;
     height: 220px;
     transition: 0.5s;
@@ -112,6 +113,11 @@ body {
   left: 50px;
   color: #fff;
 
+}
+.toggle{
+  position: relative;
+  top: 185px;
+  left: 30%;
 }
 
 

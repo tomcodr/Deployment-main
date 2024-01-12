@@ -12,7 +12,7 @@ export default {
   methods: {
     async fetchrpmValue() {
       try {
-        const response = await fetch("https://cartrackerapi.onrender.com/api/v1/fahrzeuge/67c012ef-39f7-48c1-8d7a-092fcad45c08/messwerte?type=rpm");
+        const response = await fetch("https://cartrackerapi.onrender.com/api/v1/fahrzeuge/67c012ef-39f7-48c1-8d7a-092fcad45c08/messwerte");
         const data = await response.json();
 
         console.log("API Response:", data);
@@ -24,29 +24,23 @@ export default {
             const roundedRpm = Math.round(rpm);
             this.rpmValue = roundedRpm.toString();
           } else {
-            console.error("Ungültiger oder fehlender Wert für rpm:", rpm);
-            // Setze rpmValue auf null, um "N/A" anzuzeigen
+            console.error("Invalid or missing value for rpm:", rpm);
             this.rpmValue = null;
           }
         } else {
-          console.error("Ungültige oder leere Daten für rpm Daten:", data.messwerte);
-          // Setze rpmValue auf null, um "N/A" anzuzeigen
+          console.error("Invalid or empty data for rpm data:", data.messwerte);
           this.rpmValue = null;
         }
       } catch (error) {
-        console.error("Fehler beim Laden der rpm Daten:", error);
-        // Setze rpmValue auf null, um "N/A" anzuzeigen
+        console.error("Error loading rpm data:", error);
         this.rpmValue = null;
       }
     },
   },
   mounted() {
-    // Setze die Aktualisierung alle 5 Sekunden (5000 Millisekunden)
-    setInterval(() => {
-      this.fetchrpmValue();
-    }, 2000);
+    // Set the update interval every 5 seconds (5000 milliseconds)
 
-    // Führe fetchData einmal bei der Initialisierung aus
+    // Perform fetchData once during initialization
     this.fetchrpmValue();
   },
 };

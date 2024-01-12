@@ -3,7 +3,7 @@
     <header class="header">
 
       <a href="#" class="logo"></a>
-      <ToggleSwitch @click="toggleBackgroundMode"/> 
+      
       
 
       <input type="checkbox" id="check" v-model="menuOpen">
@@ -13,7 +13,7 @@
       </label>
 
       <nav class="navbar">
-        <a href="#" @click="onDashboardclick"  style="--i:0; order: 1;"><span>Dashboard</span><i class='bx bxs-dashboard bx-flip-horizontal' ></i></a>
+        <a href="#" @click="onDashboardclick"  style="--i:0; order: 1;"><span>Dashboard</span><i class='bx bxs-dashboard bx-flip-horizontal' style="margin-left: 7px;" ></i></a>
         <div class="dropdown">
           <a href="#" style="--i:1; order: 2;"><span>Messwerte</span><i class='bx bx-caret-down' ></i></a>
           <div class="dropdown-content">
@@ -29,11 +29,11 @@
           </div>
         </div>
 
-        <a href="#" @click="onFahrzeugeclick" style="--i:3; order: 4;"><span>Fahrzeuge</span><i class='bx bx-car' ></i></a>
-        <a href="#" @click="onLayoutclick" style="--i:4; order: 5;"><span>Layout</span><i class='bx bx-layout' ></i></a>
-        <a href="#" @click="onProfilclick" style="--i:2; order: 3;"><i class='bx bx-user bx-flip-horizontal' ></i></a>
-        <a href="#" @click="onHilfeclick"  style="--i:5; order: 6;"><i class='bx bx-help-circle' ></i></a>
-        <a href="#" @click="handleSignOut"><i class='bx bx-exit'></i></a>
+        <a href="#" @click="onFahrzeugeclick" style="--i:3; order: 4;"><span>Fahrzeuge</span><i class='bx bx-car' style="margin-left: 7px;"></i></a>
+        <a href="#" @click="onLayoutclick" style="--i:4; order: 5;"><span>Layout</span><i class='bx bx-layout' style="margin-left: 7px;" ></i></a>
+        <a href="#" @click="onProfilclick" style="--i:2; order: 3;"><i class='bx bx-user bx-flip-horizontal' style="margin-left: -7px;"></i></a>
+        <a href="#" @click="onHilfeclick"  style="--i:5; order: 6;"><i class='bx bx-help-circle' style="margin-left: -7px;"></i></a>
+        <a href="#" @click="handleSignOut"><i class='bx bx-exit' style="margin-left: -8px;"></i></a>
   
         
       </nav>
@@ -45,7 +45,6 @@
 import { onMounted, ref } from "vue";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from 'vue-router';
-import ToggleSwitch from "./ToggleSwitch.vue";
 
   export default {
   
@@ -55,7 +54,7 @@ import ToggleSwitch from "./ToggleSwitch.vue";
         selectedLanguage: 'de',
       };
     },
-    components: {ToggleSwitch},
+    
     methods: {
       changeLanguage() {
         this.$i18n.locale = this.selectedLanguage;
@@ -240,9 +239,9 @@ body {
 
 .logo {
 display: inline-block;
-width: 100px; 
-height: 60px; 
-background-image: url('/png-cartracker-logo@2x.png'); 
+width: 80px; 
+height: 40px; 
+background-image: url('/AF-IT LOGO.png'); 
 background-size: contain;
 background-repeat: no-repeat;
 cursor: auto;

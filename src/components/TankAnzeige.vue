@@ -1,5 +1,5 @@
 <template>
-  <div class="tank-wert-hybrid">{{ fuelVolumePercentage !== null ? fuelVolumePercentage : 'N/A' }}</div>
+  <div class="tank-wert-hybrid">{{ fuelVolumePercentage !== null ? fuelVolumePercentage : '0' }}</div>
 </template>
 
 <script>
@@ -41,11 +41,7 @@ export default {
     },
   },
   mounted() {
-    // Starte das Aktualisierungsintervall
-    this.updateInterval = setInterval(() => {
-      this.fetchFuelVolume();
-    }, 2000);
-
+    
     // Führe fetchFuelVolume einmal bei der Initialisierung aus
     this.fetchFuelVolume();
   },

@@ -1,7 +1,7 @@
 <template>
   <body>
   <div class="wrapper">
-    <form @submit.prevent="login">
+    <form id="loginForm" @submit.prevent="login" >
       <h1>Login</h1>
       <div class="input-box">
         <input v-model="email" type="email" placeholder="Email" required>
@@ -12,7 +12,7 @@
       <div><p v-if="errMsg">{{ errMsg }}</p></div>
       <div class="remember-forgot">
         <label><input type="checkbox" v-model="rememberMe"> Remember me</label>
-        <a href="#">Forgot password?</a>
+        <label id="forgotpasslabel" @click="ForgotPassword" style="cursor: pointer; user-select: none;">Forgot password?</label>
       </div>
       <button type="submit" class="btn">Login</button>
       <div class="register-link">
@@ -23,22 +23,24 @@
 </body>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {useRouter} from 'vue-router'
 
+<script setup>
+import { ref, onMounted } from "vue";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { useRouter } from 'vue-router';
 
 const email = ref("");
 const password = ref("");
 const router = useRouter();
 const errMsg = ref();
 
-const login = () => {
+const login = (event) => {
+  event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       console.log("Succesfully signed in!");
-      router.push('/fahrzeughinzufuegen')
+      router.push('/fahrzeughinzufuegen');
     })
     .catch((error) => {
       handleAuthError(error);
@@ -70,17 +72,35 @@ const handleAuthError = (error) => {
 const register = () =>{
   router.push('/register')
 }
-const signInWithGoogle = () => {
-  // Implement Google sign-in logic here
+
+
+const forgotPassword = () => {
+  sendPasswordResetEmail(getAuth(), email.value)
+    .then(() => {
+      alert("A Password Reset Link has been sent to your email");
+    })
+    .catch((error) => {
+      console.log(error.code);
+      console.log(error.message);
+    });
 };
+
+onMounted(() => {
+  const mainForm = document.getElementById('loginForm');
+  const forgotPasswordLabel = document.getElementById('forgotpasslabel');
+
+  if (mainForm) {
+    mainForm.addEventListener('submit', login);
+  }
+
+  if (forgotPasswordLabel) {
+    forgotPasswordLabel.addEventListener('click', forgotPassword);
+  }
+});
 </script>
 
 
 <style scoped>
-
-
-
-
 * {
     margin: 0;
     padding: 0;

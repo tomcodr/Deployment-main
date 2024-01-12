@@ -1,5 +1,5 @@
 <template>
-  <div class="tank-volumen">{{ fuelCapacity !== null ? `/ ${fuelCapacity} L` : 'N/A' }}</div>
+  <div class="tank-volumen">{{ fuelCapacity !== null ? `/ ${fuelCapacity} L` : '/'+' '+'0L' }}</div>
 </template>
 
 <script>
@@ -33,10 +33,7 @@ export default {
     },
   },
   mounted() {
-    // Starte das Aktualisierungsintervall
-    this.updateInterval = setInterval(() => {
-      this.fetchFuelCapacity();
-    }, 2000);
+   
 
     // Führe fetchFuelCapacity einmal bei der Initialisierung aus
     this.fetchFuelCapacity();

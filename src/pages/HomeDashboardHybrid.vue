@@ -46,12 +46,8 @@
     
 
   
-    <div class="motorhaube-text">Motorhaube</div>
-    <div class="spoiler-closed"><SpoilerAnzeige/></div>
-    <div class="motorhaube-closed" >GESCHLOSSEN</div>
-
-   
     <div class="spoiler-text">Spoiler</div>
+    <div class="spoiler-closed"><SpoilerAnzeige/></div>
     <div class="hupe-text">Hupe</div>
     <div class="hupe-aktiv"><HupeAnzeige/></div>
     <div class="abs-aktiv"><ABS/></div>
@@ -410,8 +406,8 @@
   }
   .home-otto-elemente {
     position: absolute;
-    top: 550px;
-    left: 186px;
+    top: 72%;
+    left: 13%;
     width: 1067.3px;
     height: 125px;
     font-size: 20px;
@@ -546,24 +542,11 @@
 }
 
 .spoiler-closed {
-    position: absolute;
-    height: 10px; 
-    width: 65px; 
-    top: 270px; 
-    left: 1062px; 
-    font-weight: 300;
-    color: var(--secondary-color); 
-    text-align: center;
-    display: inline-block;
-    user-select: none;
-}
-
-.motorhaube-closed {
-    position: absolute;
-    height: 10px; 
-    width: 71px; 
+  position: absolute;
+    height: 10px;
+    width: 43px; 
     top: 244px; 
-    left: 1062px; 
+    left: 1200px; 
     font-weight: 300;
     color: var(--secondary-color); 
     text-align: center;
@@ -575,8 +558,8 @@
     position: absolute;
     height: 10px; 
     width: 57px; 
-    top: 270px; 
-    left: 1229px; 
+    top: 244px; 
+    left: 1100px; 
     font-weight: 300;
     color: var(--text-color); 
     display: inline-block;
@@ -600,7 +583,7 @@
     height: 10px; 
     width: 43px; 
     top: 244px; 
-    left: 210px; 
+    left: 200px; 
     font-weight: 300;
     color: var(--secondary-color); 
     text-align: center;
@@ -613,7 +596,7 @@
     height: 10px;
     width: 43px; 
     top: 270px; 
-    left: 210px; 
+    left: 200px; 
     font-weight: 300;
     color: var(--secondary-color); 
     text-align: center;
@@ -636,8 +619,8 @@
     position: absolute;
     height: 10px;
     width: 43px; 
-    top: 296px; 
-    left: 210px; 
+    top: 270px; 
+    left: 1200px; 
     font-weight: 300;
     color: var(--secondary-color); 
     text-align: center;
@@ -649,8 +632,8 @@
     position: absolute;
     height: 10px; 
     width: 32px; 
-    top: 296px; 
-    left: 124px; 
+    top: 270px; 
+    left: 1100px; 
     font-weight: 300;
     color: var(--text-color); 
     display: inline-block;

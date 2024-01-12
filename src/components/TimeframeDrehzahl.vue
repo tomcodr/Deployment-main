@@ -81,8 +81,25 @@ export default {
           y: {
             beginAtZero: true
           }
-        }
-      }
+        },
+        plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: 'x',
+            },
+            pan: {
+              enabled: true,
+              mode: 'x',
+            },
+          },
+        },
+      },
     });
     
     // Initial data fetch and chart render

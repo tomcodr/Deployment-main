@@ -1,5 +1,5 @@
 <template>
-  <div class="steering-value">{{ steeringValue !== null ? steeringValue + "°" : 'N/A' }}</div>
+  <div class="steering-value">{{ steeringValue !== null ? steeringValue + "°" : '0°' }}</div>
 </template>
 
 <script>
@@ -40,11 +40,7 @@ export default {
     },
   },
   mounted() {
-    // Starte das Aktualisierungsintervall
-    this.updateInterval = setInterval(() => {
-      this.fetchData();
-    }, 5000);
-
+    
     // Führe fetchData einmal bei der Initialisierung aus
     this.fetchData();
   },

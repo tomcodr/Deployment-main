@@ -2,7 +2,7 @@
   <!-- Container für Bremsinformationen -->
   <div class="brake-container">
     <!-- Anzeige des Bremswerts, zeigt den Wert an oder 'N/A', wenn nicht verfügbar -->
-    <b class="brake-value">{{ brakeInputValue !== null ? brakeInputValue : 'N/A' }}</b>
+    <b class="brake-value">{{ brakeInputValue !== null ? brakeInputValue : '0' }}</b>
   </div>
 </template>
 
@@ -54,11 +54,6 @@ export default {
   mounted() {
     // Beim Laden der Komponente, rufe die Funktion zum Abrufen der Bremsendaten auf
     this.fetchData();
-
-    // Setze ein Intervall, um die Funktion alle 2 Sekunden aufzurufen
-    setInterval(() => {
-      this.fetchData();
-    }, 2000);
   },
 };
 </script>
