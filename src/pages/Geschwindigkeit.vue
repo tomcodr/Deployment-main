@@ -15,7 +15,7 @@
   
   
   <div class="kmh">KM/H</div>
-  <div class="geschwindigkeit-value"><GeschwindigkeitAnzeige/></div>
+  <div class="geschwindigkeit-value">20</div>
   <div class="auto-titel"></div>
 
 
@@ -23,14 +23,14 @@
 <script>
 import { defineComponent } from "vue";
 import Navigation from '../components/Navigation.vue';
-import GeschwindigkeitAnzeige from "../components/GeschwindigkeitAnzeige.vue";
+
 import ChartGeschwindigkeit from "../components/ChartGeschwindigkeit.vue";
 import store from '../store/store';
 
 
 export default defineComponent({
   name: "Geschwindigkeit",
-  components: { GeschwindigkeitAnzeige, ChartGeschwindigkeit, Navigation },
+  components: {  ChartGeschwindigkeit, Navigation },
   computed: {
     getLatestCarPath() {
       const carPaths = store.getters.getCarPaths;

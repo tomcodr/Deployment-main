@@ -7,7 +7,7 @@
   </div>
  
   <div class="gear-text">GEAR</div>
-  <div class="gear-value"><GangAnzeige/></div>
+  <div class="gear-value">200</div>
     
   <img
     class="png-auto"
@@ -23,13 +23,13 @@
 <script>
 import { defineComponent } from "vue";
 import Navigation from '../components/Navigation.vue';
-import GangAnzeige from "../components/GangAnzeige.vue";
+import CentralFetcher from "../components/CentralFetcher.vue";
 import ChartGang from "../components/ChartGang.vue";
 import store from '../store/store';
 
 export default defineComponent({
   name: "Gang",
-  components: { GangAnzeige, ChartGang, Navigation },
+  components: {  ChartGang, Navigation },
   computed: {
     getLatestCarPath() {
       const carPaths = store.getters.getCarPaths;

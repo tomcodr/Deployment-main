@@ -8,21 +8,21 @@
       
       <div class="gang">
     <div class="element-background" @click="onGangContainerClick"></div>
-    <b class="gang-value"><GangAnzeige/></b>
+    <b class="gang-value">{{ carData.gear_index }}</b>
     <div class="element-titel">Gang</div>
     <div @click="onGangClick" class="arrow"><i class='bx bxs-right-arrow-circle'></i></div>
   </div>
       
       <div class="bremse">
           <div class="element-background" @click=" onBremseContainerClick"></div>
-          <b class="bremse-value"><BremseAnzeige/></b>
+          <b class="bremse-value">{{ carData.brake_input }}</b>
           <div class="element-titel">Bremsdruck</div>
           <div @click="onBremseClick" class="arrow"><i class='bx bxs-right-arrow-circle'></i></div>
       </div>
       
       <div class="speed">
         <div class="element-background" @click="onSpeedContainerClick"></div>
-        <b class="speed-value"><GeschwindigkeitAnzeige/></b>
+        <b class="speed-value">{{ Math.round(carData.airflowspeed)+'  ' + 'Km/h' }}</b>
         <div class="element-titel">Geschwindigkeit</div>
         <div @click="onGeschwindigkeitClick" class="arrow"><i class='bx bxs-right-arrow-circle'></i></div>
       </div>
@@ -31,13 +31,13 @@
         <div class="element-background" @click="onLWasserContainerClick"></div>
         <img class="png-wasser-icon"  src="/png-wasser-icon@2x.png" />
         <img class="png-oel-icon"  src="/png-l-icon@2x.png" />
-        <b class="wasser-value"><WasserTemperaturAnzeige/></b>
-        <b class="oel-value"><OelTemperaturAnzeige/></b>
+        <b class="wasser-value">{{Math.round (carData.water_temperature)+ '°' }}</b>
+        <b class="oel-value">{{ Math.round (carData.oil_temperature) + '°' }}</b>
         <div @click="onWasserClick" class="arrow"><i class='bx bxs-right-arrow-circle'></i></div>
       </div>
       <div class="drehzahl">
         <div class="element-background" @click="onDrehzahlContainerClick"></div>
-        <b class="drehzahl-value"><DrehzahlAnzeige/></b>
+        <b class="drehzahl-value"> {{ carData.rpm !== null && carData.rpm !== undefined ? Math.round(carData.rpm) + ' U/min' : '' }}</b>
         <div class="element-titel">Drehzahl</div>
         <div @click="onDrehzahlClick" class="arrow"><i class='bx bxs-right-arrow-circle'></i></div>
       </div>
@@ -47,13 +47,13 @@
 
   
     <div class="spoiler-text">Spoiler</div>
-    <div class="spoiler-closed"><SpoilerAnzeige/></div>
+    <div class="spoiler-closed">{{ carData.spoilerF === 1.0 ? 'AUSGEFAHREN' : 'EINGEFAHREN' }}</div>
     <div class="hupe-text">Hupe</div>
-    <div class="hupe-aktiv"><HupeAnzeige/></div>
-    <div class="abs-aktiv"><ABS/></div>
+    <div class="hupe-aktiv">{{ carData.horn === 1.0 ? 'AKTIV' : 'INAKTIV'}}</div>
+    <div class="abs-aktiv">{{ carData.isABSBrakeActive === 1.0 ? 'AKTIV' : 'INAKTIV' }}</div>
     <div class="abs-text">ABS</div>
     <div class="bremse-text">Bremse</div>
-    <div class="bremse-aktiv"><BremseJaNein/></div>
+    <div class="bremse-aktiv">{{ carData.brakelight_signal_R === 1.0 ? 'AKTIV' : 'INAKTIV'}}</div>
   
 
 
@@ -113,17 +113,9 @@
 
 <script>
   import { defineComponent } from "vue";
-  import GangAnzeige from "../components/GangAnzeige.vue"
-  import DrehzahlAnzeige from "../components/DrehzahlAnzeige.vue"
+
   import TankAnzeige from "../components/TankAnzeige.vue"
-  import GeschwindigkeitAnzeige from "../components/GeschwindigkeitAnzeige.vue"
-  import OelTemperaturAnzeige from "../components/OelTemperaturAnzeige.vue"
-  import BremseAnzeige from "../components/BremseAnzeige.vue"
-  import WasserTemperaturAnzeige from "../components/WasserTemperaturAnzeige.vue"
-  import SpoilerAnzeige from "../components/SpoilerAnzeige.vue"
-  import HupeAnzeige from "../components/HupeAnzeige.vue"
-  import ABS from "../components/ABS.vue"
-  import BremseJaNein from "../components/BremseJaNein.vue"
+
   import TankvolumenAnzeige from "../components/TankvolumenAnzeige.vue"
   import store from '../store/store';
   import Navigation from '../components/Navigation.vue';
@@ -135,10 +127,13 @@
     name: "HomeDashboardHybrid",
     data() {
       return {
-       
+        carData: {},
       };
     },
-    components: { GangAnzeige, DrehzahlAnzeige, TankAnzeige, GeschwindigkeitAnzeige, OelTemperaturAnzeige, BremseAnzeige, WasserTemperaturAnzeige, SpoilerAnzeige, HupeAnzeige,ABS, BremseJaNein, TankvolumenAnzeige, Navigation},
+    mounted() {
+    this.fetchCarData();
+  },
+    components: {TankAnzeige,  TankvolumenAnzeige, Navigation },
     computed: {
     getLatestCarPath() {
       const carPaths = store.getters.getCarPaths;
@@ -156,6 +151,15 @@
   },
 
     methods: {
+      async fetchCarData() {
+      try {
+        const response = await fetch('https://cartrackerapi.onrender.com/api/v1/fahrzeuge/67c012ef-39f7-48c1-8d7a-092fcad45c08/messwerte');
+        const data = await response.json();
+        this.carData = data.messwerte[0];
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Fahrzeugdaten:', error);
+      }
+    },
 
       onGangClick() {
         this.$router.push("gang");
@@ -210,9 +214,6 @@
         }
       },
     },
-    mounted() {
-      this.fetchDataForComponents();
-    },
   });
 </script>
 
@@ -261,7 +262,7 @@
 
   .gang-value {
     position: absolute;
-    top: 40px;
+    top: 81px;
     left: 15px;
     display: inline-block;
     width: 43.6px;
@@ -362,7 +363,7 @@
   }
   .oel-value {
     position: absolute;
-    top: 40px;
+    top: 81px;
     left: 10px;
     display: inline-block;
     width: 43.6px;
@@ -395,7 +396,7 @@
 
   .drehzahl-value {
     position: absolute;
-    top: 40px;
+    top: 81px;
     left: 15px;
     display: inline-block;
     width: 150px;

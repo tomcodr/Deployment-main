@@ -5,7 +5,7 @@
   <div  @click="goBack">
   <div class="arrow"><i class='bx bx-left-arrow-alt'></i></div>
   </div>
-  <div class="lenkung-value"><LenkungAnzeige/></div>
+  <div class="lenkung-value">45°</div>
   <img
     class="png-auto"
     :src="getLatestCarPath"
@@ -20,14 +20,14 @@
 <script>
 import { defineComponent } from "vue";
 import Navigation from '../components/Navigation.vue';
-import LenkungAnzeige from "../components/LenkungAnzeige.vue";
+
 import ChartLenkung from "../components/ChartLenkung.vue";
 import store from "../store/store";
 
 
 export default defineComponent({
   name: "Lenkung",
-  components: { LenkungAnzeige, ChartLenkung, Navigation },
+  components: {  ChartLenkung, Navigation },
   computed: {
     getLatestCarPath() {
       const carPaths = store.getters.getCarPaths;

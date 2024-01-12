@@ -16,8 +16,8 @@
  
       
       <img class="wasser-icon" alt="" src="/png-wasser-icon@2x.png" />
-      <div class="wasser-value"><WasserTemperaturAnzeige/></div>
-      <div class="oel-value"><OelTemperaturAnzeige/></div>
+      <div class="wasser-value">90°</div>
+      <div class="oel-value">96°</div>
       <img class="oel-icon" alt="" src="/png-l-icon@2x.png" />
       
       
@@ -29,15 +29,14 @@
   <script>
     import { defineComponent } from "vue";
     import Navigation from '../components/Navigation.vue';
-    import OelTemperaturAnzeige from "../components/OelTemperaturAnzeige.vue";
-    import WasserTemperaturAnzeige from "../components/WasserTemperaturAnzeige.vue";
+ 
     import ChartOel from "../components/ChartOel.vue";
     import ChartWater from "../components/ChartWater.vue";
     import store from '../store/store';
   
     export default defineComponent({
       name: "Temperaturen",
-      components: { WasserTemperaturAnzeige, OelTemperaturAnzeige, ChartOel, ChartWater, Navigation },
+      components: { ChartOel, ChartWater, Navigation },
       computed: {
         getLatestCarPath() {
       const carPaths = store.getters.getCarPaths;

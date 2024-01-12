@@ -3,7 +3,7 @@
   <container class="chart-drehzahl"><ChartDrehzahl/></container>
   <container class="timeframe-drehzahl"><TimeframeDrehzahl/></container>
   <div class="rpm-text">RPM</div>
-  <div class="rpm-value"><DrehzahlAnzeige/></div>
+  <div class="rpm-value">3000</div>
   <div  @click="goBack">
   <div class="arrow"><i class='bx bx-left-arrow-alt'></i></div>
   </div>
@@ -27,7 +27,6 @@
 <script>
 import { defineComponent } from "vue";
 import Navigation from '../components/Navigation.vue';
-import DrehzahlAnzeige from "../components/DrehzahlAnzeige.vue";
 import ChartDrehzahl from "../components/ChartDrehzahl.vue";
 import TimeframeDrehzahl from "../components/TimeframeDrehzahl.vue";
 import store from '../store/store';
@@ -35,7 +34,7 @@ import store from '../store/store';
 
 export default defineComponent({
   name: "Drehzahl",
-  components: { DrehzahlAnzeige, ChartDrehzahl, Navigation, TimeframeDrehzahl },
+  components: { ChartDrehzahl, Navigation, TimeframeDrehzahl },
   computed: {
     getLatestCarPath() {
       const carPaths = store.getters.getCarPaths;

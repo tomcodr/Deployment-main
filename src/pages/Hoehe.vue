@@ -6,7 +6,7 @@
   <div  @click="goBack">
   <div class="arrow"><i class='bx bx-left-arrow-alt'></i></div>
   </div>
-  <div class="motor-value"><HoeheAnzeige/></div>
+  <div class="motor-value">186m</div>
 
   <div class="auto-titel"></div>
   
@@ -21,13 +21,13 @@
 import { defineComponent } from "vue";
 import Navigation from '../components/Navigation.vue';
 import ChartHoehe from "../components/ChartHoehe.vue";
-import HoeheAnzeige from "../components/HoeheAnzeige.vue";
+
 import store from "../store/store";
 
 
 export default defineComponent({
   name: "Motor",
-  components: { ChartHoehe, HoeheAnzeige, Navigation },
+  components: { ChartHoehe, Navigation },
   computed: {
     getLatestCarPath() {
       const carPaths = store.getters.getCarPaths;
